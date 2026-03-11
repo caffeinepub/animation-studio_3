@@ -1,0 +1,117 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.11 0.01 250;
+    --foreground: 0.93 0.01 80;
+    --card: 0.15 0.01 250;
+    --card-foreground: 0.93 0.01 80;
+    --popover: 0.17 0.01 250;
+    --popover-foreground: 0.93 0.01 80;
+    --primary: 0.7 0.2 195;
+    --primary-foreground: 0.1 0.01 250;
+    --secondary: 0.2 0.01 250;
+    --secondary-foreground: 0.93 0.01 80;
+    --muted: 0.2 0.01 250;
+    --muted-foreground: 0.55 0.02 250;
+    --accent: 0.22 0.02 250;
+    --accent-foreground: 0.93 0.01 80;
+    --destructive: 0.6 0.22 25;
+    --destructive-foreground: 0.97 0.01 80;
+    --border: 0.24 0.01 250;
+    --input: 0.22 0.01 250;
+    --ring: 0.7 0.2 195;
+    --radius: 4px;
+    --chart-1: 0.7 0.2 195;
+    --chart-2: 0.7 0.18 140;
+    --chart-3: 0.7 0.2 55;
+    --chart-4: 0.65 0.22 25;
+    --chart-5: 0.65 0.2 285;
+    --sidebar: 0.13 0.01 250;
+    --sidebar-foreground: 0.93 0.01 80;
+    --sidebar-primary: 0.7 0.2 195;
+    --sidebar-primary-foreground: 0.1 0.01 250;
+    --sidebar-accent: 0.22 0.02 250;
+    --sidebar-accent-foreground: 0.93 0.01 80;
+    --sidebar-border: 0.24 0.01 250;
+    --sidebar-ring: 0.7 0.2 195;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  .checkerboard {
+    background-image: linear-gradient(45deg, #444 25%, transparent 25%),
+      linear-gradient(-45deg, #444 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #444 75%),
+      linear-gradient(-45deg, transparent 75%, #444 75%);
+    background-size: 12px 12px;
+    background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+    background-color: #333;
+  }
+
+  .tool-btn {
+    @apply w-9 h-9 flex items-center justify-center rounded cursor-pointer transition-colors;
+    @apply text-muted-foreground hover:text-foreground hover:bg-accent;
+  }
+
+  .tool-btn.active {
+    @apply text-primary bg-accent;
+    box-shadow: inset 0 0 0 1px oklch(var(--primary));
+  }
+
+  .panel-header {
+    @apply text-xs font-semibold uppercase tracking-widest text-muted-foreground px-3 py-2 border-b border-border;
+  }
+
+  .mono {
+    font-family: "Geist Mono", monospace;
+  }
+}
