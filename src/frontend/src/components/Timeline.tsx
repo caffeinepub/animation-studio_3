@@ -190,11 +190,11 @@ export default function Timeline({
               <input
                 id="frame-duration"
                 type="number"
-                min={16}
+                min={1}
                 max={5000}
                 value={frameDuration}
                 onChange={(e) => onFrameDurationChange(Number(e.target.value))}
-                title="How long each frame is displayed (in milliseconds). Lower = faster animation."
+                title="How long each frame is displayed (in milliseconds). Lower = faster animation. Changes apply to all frames."
                 className="w-16 bg-background border border-border rounded px-2 py-0.5 text-xs mono outline-none focus:border-primary"
               />
             </div>

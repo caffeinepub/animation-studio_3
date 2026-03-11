@@ -390,15 +390,7 @@ export default function Dashboard({ onOpenProject }: Props) {
       <footer className="border-t border-border px-6 py-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()}. Built with love using{" "}
-            <a
-              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              caffeine.ai
-            </a>
+            © {new Date().getFullYear()} Animation Studio
           </p>
           {formattedVisits != null && (
             <p className="flex items-center gap-1.5 text-xs text-muted-foreground">

@@ -40,7 +40,7 @@ function makeLayer(name = "Layer 1"): LayerState {
 }
 
 function makeFrame(): FrameState {
-  return { id: crypto.randomUUID(), layers: [makeLayer()], duration: 100 };
+  return { id: crypto.randomUUID(), layers: [makeLayer()], duration: 2 };
 }
 
 interface Props {
@@ -90,7 +90,7 @@ export default function Editor({ project, onBack }: Props) {
   // Playback
   useEffect(() => {
     if (!isPlaying) return;
-    const dur = framesRef.current[currentFrameIndex]?.duration ?? 100;
+    const dur = framesRef.current[currentFrameIndex]?.duration ?? 2;
     const timer = setTimeout(() => {
       const next = currentFrameIndex + 1;
       if (next >= framesRef.current.length) {
@@ -303,7 +303,7 @@ export default function Editor({ project, onBack }: Props) {
       pushHistory(updated);
       return updated;
     });
-    setTimeout(() => switchFrame(framesRef.current.length), 0);
+    setTimeout(() => switchFrame(framesRef.current.length - 1), 0);
   }
 
   function duplicateFrame(i: number) {
@@ -444,7 +444,7 @@ export default function Editor({ project, onBack }: Props) {
   const currentFrame = frames[currentFrameIndex];
   const prevFrame =
     onionSkin && currentFrameIndex > 0 ? frames[currentFrameIndex - 1] : null;
-  const frameDuration = currentFrame?.duration ?? 100;
+  const frameDuration = currentFrame?.duration ?? 2;
   const fps = Math.max(1, Math.round(1000 / frameDuration));
 
   return (
@@ -673,11 +673,7 @@ export default function Editor({ project, onBack }: Props) {
         onLoopToggle={() => setPlaybackLoop((l) => !l)}
         onOnionToggle={() => setOnionSkin((o) => !o)}
         onFrameDurationChange={(ms) =>
-          setFrames((prev) =>
-            prev.map((f, i) =>
-              i === currentFrameIndex ? { ...f, duration: ms } : f,
-            ),
-          )
+          setFrames((prev) => prev.map((f) => ({ ...f, duration: ms })))
         }
       />
     </div>
